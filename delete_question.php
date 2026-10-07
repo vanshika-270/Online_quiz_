@@ -1,0 +1,1 @@
+<?php require_once "../db.php";require_role("Teacher");$id=(int)($_GET["id"]??0);$qid=(int)($_GET["quiz_id"]??0);$st=$conn->prepare("DELETE FROM questions WHERE id=?");$st->bind_param("i",$id);$st->execute();$conn->query("UPDATE quiz SET total_questions=(SELECT COUNT(*) FROM questions WHERE quiz_id=$qid) WHERE id=$qid");go("manage_questions.php?quiz_id=".$qid);?>

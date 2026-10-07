@@ -1,0 +1,1 @@
+<?php require_once "../db.php";require_role("Teacher");$id=(int)($_GET["id"]??0);$uid=current_id();$st=$conn->prepare("DELETE FROM quiz WHERE id=? AND created_by=?");$st->bind_param("ii",$id,$uid);$st->execute();go("manage_quiz.php");?>
